@@ -1,142 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sijing Li — Literary Translator</title>
-
-  <meta
-    name="description"
-    content="Sijing Li — Literary translator"
-  >
-
+  <meta name="description" content="Sijing Li — Literary translator">
   <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
-
 <header>
-
-  <h1>SIJING LI 李思璟</h1>
-
-  <p>Literary translator 文学译者</p>
-
+  <h1>Sijing Li <span class="cn">李思璟</span></h1>
+  <div class="tagline">Literary translator working between English and Chinese.</div>
+  <p>PORTFOLIO — 作品集</p>
 </header>
-
-
 
 <main>
 
-
   <!-- FICTION -->
-
   <section>
-
-    <h2>FICTION</h2>
-
-    <div
-      id="fiction"
-      class="book-grid"
-    ></div>
-
+    <h2 data-index="01">Fiction</h2>
+    <div id="fiction" class="book-grid"></div>
   </section>
-
-
 
   <!-- NONFICTION -->
-
   <section>
-
-    <h2>NONFICTION</h2>
-
-    <div
-      id="nonfiction"
-      class="book-grid"
-    ></div>
-
+    <h2 data-index="02">Nonfiction</h2>
+    <div id="nonfiction" class="book-grid"></div>
   </section>
-
-
 
   <!-- FORTHCOMING -->
-
   <section>
-
-    <h2>FORTHCOMING</h2>
-
-    <div
-      id="forthcoming"
-    ></div>
-
+    <h2 data-index="03">Forthcoming</h2>
+    <div id="forthcoming"></div>
   </section>
-
-
 
   <!-- CONTACT -->
-
   <section class="contact">
+    <h2 data-index="04">Contact</h2>
+    <p>For translation enquiries, or other messages, please get in touch.</p>
 
-    <h2>CONTACT</h2>
-
-    <p>
-      For translation enquiries, 
-      or other messages, please get in touch.
-    </p>
-
-
-    <form
-      action="https://formspree.io/f/mkjggrnq"
-      method="POST"
-    >
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Your email"
-        required
-      >
-
-
-      <textarea
-        name="message"
-        placeholder="Your message"
-        required
-      ></textarea>
-
-
-      <button type="submit">
-        SEND
-      </button>
-
+    <form action="https://formspree.io/f/mkjggrnq" method="POST">
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message" required></textarea>
+      <button type="submit">Send Message</button>
     </form>
-
   </section>
-
 
 </main>
 
-
-
 <footer>
-
-  © Sijing Li
-
+  <span>© Sijing Li</span>
+  <span>Translating since —</span>
 </footer>
 
-
-
 <script src="works.js"></script>
-
 </body>
-
 </html>
