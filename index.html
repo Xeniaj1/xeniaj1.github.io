@@ -1,43 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>Sijing Li — Literary Translator</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <meta
+    name="description"
+    content="Sijing Li — Literary translator"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <h1>SIJING LI</h1>
+
   <p>Literary translator</p>
+
 </header>
+
+
 
 <main>
 
-<section>
-  <h2>FICTION</h2>
-  <div class="book-grid" id="fiction"></div>
-</section>
+
+  <!-- FICTION -->
+
+  <section>
+
+    <h2>FICTION</h2>
+
+    <div
+      id="fiction"
+      class="book-grid"
+    ></div>
+
+  </section>
 
 
-<section>
-  <h2>NONFICTION</h2>
-  <div class="book-grid" id="nonfiction"></div>
-</section>
+
+  <!-- NONFICTION -->
+
+  <section>
+
+    <h2>NONFICTION</h2>
+
+    <div
+      id="nonfiction"
+      class="book-grid"
+    ></div>
+
+  </section>
 
 
-<section id="forthcoming-section" style="display:none;">
-  <h2>FORTHCOMING</h2>
-  <div class="book-grid" id="forthcoming"></div>
-</section>
+
+  <!-- FORTHCOMING -->
+
+  <section>
+
+    <h2>FORTHCOMING</h2>
+
+    <div
+      id="forthcoming"
+    ></div>
+
+  </section>
+
+
+
+  <!-- CONTACT -->
+
+  <section class="contact">
+
+    <h2>CONTACT</h2>
+
+    <p>
+      For translation enquiries, rights enquiries,
+      or other messages, please get in touch.
+    </p>
+
+
+    <form
+      action="https://formspree.io/f/YOUR_FORM_ID"
+      method="POST"
+    >
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Your email"
+        required
+      >
+
+
+      <textarea
+        name="message"
+        placeholder="Your message"
+        required
+      ></textarea>
+
+
+      <button type="submit">
+        SEND
+      </button>
+
+    </form>
+
+  </section>
 
 
 </main>
 
 
+
+<footer>
+
+  © Sijing Li
+
+</footer>
+
+
+
 <script src="works.js"></script>
 
 </body>
+
 </html>
