@@ -55,32 +55,16 @@ const forthcoming = [
   ["Interviews with Francis Bacon", "David Sylvester"]
 ];
 
-/* ---------- 不规则排列：随机 span + margin-top ---------- */
-/* 12 列网格；每本书随机占 2 / 3 / 4 列，随机下沉 0~140px */
-const SPAN_CHOICES = [2, 3, 3, 3, 4];   // 3 出现概率高一些，视觉更平衡
-const OFFSETS = [0, 20, 40, 60, 90, 120, 140];
-
-function randomFrom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-/* 为每一本书生成一个 grid-column span 和 margin-top，保证一行总列数不会太乱 */
-function layoutStyle(index) {
-  const span = randomFrom(SPAN_CHOICES);
-  const offset = randomFrom(OFFSETS);
-  return `grid-column: span ${span}; margin-top: ${offset}px; animation-delay: ${Math.min(index * 0.05, 0.5)}s;`;
-}
-
 function render(category, id) {
   const container = document.getElementById(id);
   const html = works
     .filter(book => book.category === category)
-    .map((book, i) => {
+    .map(book => {
       const cover = book.cover
         ? `<img src="${book.cover}" alt="${book.title}">`
         : `<div class="empty-cover"></div>`;
       return `
-        <div class="book" style="${layoutStyle(i)}">
+        <div class="book">
           ${cover}
           <div class="book-info">
             <div class="title-cn">
