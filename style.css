@@ -98,7 +98,13 @@ h2 {
   transition:transform .35s ease;
 
 }
+.empty-cover {
 
+  width:100%;
+
+  aspect-ratio:2 / 3;
+
+}
 
 .book:hover img {
 
