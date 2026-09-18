@@ -112,23 +112,23 @@ h2::after {
   align-items: start;
 }
 
-.book {
+.book-grid > * {
   min-width: 0;
   animation: fadeUp .9s ease both;
   grid-column: span 3;
 }
 
 /* 不规则排列 pattern（每 7 本一循环） */
-.book:nth-child(7n+1) { grid-column: span 3; margin-top: 0; }
-.book:nth-child(7n+2) { grid-column: span 2; margin-top: 90px; }
-.book:nth-child(7n+3) { grid-column: span 4; margin-top: 30px; }
-.book:nth-child(7n+4) { grid-column: span 3; margin-top: 140px; }
-.book:nth-child(7n+5) { grid-column: span 2; margin-top: 20px; grid-column-start: 2; }
-.book:nth-child(7n+6) { grid-column: span 4; margin-top: 80px; }
-.book:nth-child(7n+7) { grid-column: span 3; margin-top: 0; }
+.book-grid > *:nth-child(7n+1) { grid-column: span 3; margin-top: 0; }
+.book-grid > *:nth-child(7n+2) { grid-column: span 2; margin-top: 90px; }
+.book-grid > *:nth-child(7n+3) { grid-column: span 4; margin-top: 30px; }
+.book-grid > *:nth-child(7n+4) { grid-column: span 3; margin-top: 140px; }
+.book-grid > *:nth-child(7n+5) { grid-column: span 2; margin-top: 20px; grid-column-start: 2; }
+.book-grid > *:nth-child(7n+6) { grid-column: span 4; margin-top: 80px; }
+.book-grid > *:nth-child(7n+7) { grid-column: span 3; margin-top: 0; }
 
-.book img,
-.empty-cover {
+.book-grid img,
+.book-grid .empty-cover {
   display: block;
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -138,10 +138,11 @@ h2::after {
   filter: saturate(.95);
 }
 
-.book:hover img {
+.book-grid > *:hover img {
   transform: scale(1.03);
   filter: saturate(1.05);
 }
+
 
 /* ---------- Book Text ---------- */
 .book-info { margin-top: 20px; }
