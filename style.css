@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 60px 7%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+
+header {
+  margin-bottom: 100px;
+}
+
+
+h1 {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+}
+
+
+header p {
+  font-size: 15px;
+  color: #555;
+  margin: 0;
+}
+
+
+section {
+  margin-bottom: 100px;
+}
+
+
+h2 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin-bottom: 45px;
+}
+
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px 45px;
+}
+
+
+.book img,
+.cover-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: #f3f3f3;
+}
+
+
+.book-info {
+  margin-top: 18px;
+  line-height: 1.6;
+}
+
+
+.book-info a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.book-info a:hover {
+  text-decoration: underline;
+}
+
+
+.title-cn {
+  font-size: 15px;
+}
+
+
+.title-en {
+  font-size: 14px;
+  font-style: italic;
+  color: #444;
+}
+
+
+.author {
+  font-size: 14px;
+  color: #555;
+}
+
+
+@media (max-width: 800px) {
+
+  body {
+    padding: 40px 25px;
+  }
+
+  header {
+    margin-bottom: 60px;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+}
