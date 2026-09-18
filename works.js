@@ -216,7 +216,7 @@ works
 
 const cover=book.cover
 ? `<img src="${book.cover}" alt="${book.title}">`
-: "";
+: `<div class="empty-cover"></div>`;
 
 container.innerHTML+=`
 
