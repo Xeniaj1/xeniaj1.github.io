@@ -103,37 +103,37 @@ h2::after {
   background: var(--line);
 }
 
-/* ---------- Book Grid (flex, varied widths) ---------- */
+/* ---------- Book Grid (4 columns, fixed 3:4 display ratio) ---------- */
 .book-grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;   /* 顶部对齐，便于文字排布 */
-  gap: 80px 50px;            /* 行距 80，列距 50 */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 60px;
+  row-gap: 90px;
+  align-items: start;
 }
 
-/* 每本书通过 nth-child 循环得到不同宽度，营造节奏 */
 .book {
   min-width: 0;
   animation: fadeUp .9s ease both;
-  flex: 0 0 auto;            /* 不缩放 */
+  display: flex;
+  flex-direction: column;
 }
 
-/* 5 种宽度循环：中 / 小 / 大 / 中 / 小-大 */
-.book:nth-child(5n+1) { width: 200px; }
-.book:nth-child(5n+2) { width: 150px; }
-.book:nth-child(5n+3) { width: 240px; }
-.book:nth-child(5n+4) { width: 180px; }
-.book:nth-child(5n+5) { width: 170px; }
-
+/* 封面：固定宽度撑满格子，高度按 3:4 比例；图片用 contain 完整显示不裁剪 */
 .book img,
 .empty-cover {
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  background: #ecebe5;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;            /* 想裁剪填满就改成 cover */
+  object-position: center bottom;  /* 封面底部对齐，视觉更稳 */
+  background: transparent;
   transition: transform .6s cubic-bezier(.2, .7, .2, 1), filter .6s ease;
   filter: saturate(.95);
+}
+
+.empty-cover {
+  border: 1px dashed var(--line);
 }
 
 .book:hover img {
@@ -142,7 +142,7 @@ h2::after {
 }
 
 /* ---------- Book Text ---------- */
-.book-info { margin-top: 18px; }
+.book-info { margin-top: 20px; }
 
 .title-cn {
   font-family: var(--serif);
@@ -293,44 +293,39 @@ footer {
 }
 
 /* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .book-grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 48px;
+    row-gap: 80px;
+  }
+}
+
 @media (max-width: 900px) {
   body { padding: 60px 32px 40px; }
   header { margin-bottom: 110px; }
   h1 { font-size: 30px; }
   section { margin-bottom: 120px; }
-
-  .book-grid { gap: 60px 32px; }
-  .book:nth-child(5n+1) { width: 160px; }
-  .book:nth-child(5n+2) { width: 120px; }
-  .book:nth-child(5n+3) { width: 190px; }
-  .book:nth-child(5n+4) { width: 140px; }
-  .book:nth-child(5n+5) { width: 135px; }
-
   footer { margin-top: 90px; }
+}
+
+@media (max-width: 700px) {
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 60px;
+  }
 }
 
 @media (max-width: 600px) {
   h1 { font-size: 26px; }
   h1 .cn { display: block; margin-left: 0; margin-top: 6px; }
 
-  .book-grid { gap: 45px 22px; }
-  .book:nth-child(5n+1) { width: 130px; }
-  .book:nth-child(5n+2) { width: 105px; }
-  .book:nth-child(5n+3) { width: 150px; }
-  .book:nth-child(5n+4) { width: 120px; }
-  .book:nth-child(5n+5) { width: 115px; }
-
   .future-book { grid-template-columns: 1fr; }
   .future-book div:last-child { margin-top: 4px; }
   footer { flex-direction: column; gap: 8px; }
 }
 
-@media (max-width: 380px) {
-  .book-grid { justify-content: center; }
-  .book,
-  .book:nth-child(5n+1),
-  .book:nth-child(5n+2),
-  .book:nth-child(5n+3),
-  .book:nth-child(5n+4),
-  .book:nth-child(5n+5) { width: 180px; }
+@media (max-width: 400px) {
+  .book-grid { grid-template-columns: 1fr; row-gap: 50px; }
 }
