@@ -103,25 +103,17 @@ h2::after {
   background: var(--line);
 }
 
-/* ---------- Book Grid (Masonry via CSS columns) ---------- */
+/* ---------- Book Grid (JS Masonry) ---------- */
 .book-grid {
-  column-count: 4;
-  column-gap: 60px;
+  position: relative;
+  width: 100%;
 }
 
 .book {
-  /* 关键：防止一本书被拆到两列 */
-  break-inside: avoid;
-  page-break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-
-  display: inline-block;   /* inline-block + width:100% 让 columns 布局正常识别块 */
-  width: 100%;
-  margin: 0 0 90px;        /* 用 margin-bottom 代替 grid 的 row-gap */
+  position: absolute;
   animation: fadeUp .9s ease both;
 }
 
-/* 图片按原始比例显示，宽度撑满列 */
 .book img {
   display: block;
   width: 100%;
@@ -130,7 +122,6 @@ h2::after {
   filter: saturate(.95);
 }
 
-/* 无封面占位：给一个 3:4 空框，避免图片高度参差过大 */
 .empty-cover {
   display: block;
   width: 100%;
@@ -296,22 +287,12 @@ footer {
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 1100px) {
-  .book-grid { column-count: 3; column-gap: 48px; }
-  .book { margin-bottom: 80px; }
-}
-
 @media (max-width: 900px) {
   body { padding: 60px 32px 40px; }
   header { margin-bottom: 110px; }
   h1 { font-size: 30px; }
   section { margin-bottom: 120px; }
   footer { margin-top: 90px; }
-}
-
-@media (max-width: 700px) {
-  .book-grid { column-count: 2; column-gap: 32px; }
-  .book { margin-bottom: 60px; }
 }
 
 @media (max-width: 600px) {
@@ -321,9 +302,4 @@ footer {
   .future-book { grid-template-columns: 1fr; }
   .future-book div:last-child { margin-top: 4px; }
   footer { flex-direction: column; gap: 8px; }
-}
-
-@media (max-width: 400px) {
-  .book-grid { column-count: 1; }
-  .book { margin-bottom: 50px; }
 }
