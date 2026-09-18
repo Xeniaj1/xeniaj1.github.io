@@ -103,37 +103,40 @@ h2::after {
   background: var(--line);
 }
 
-/* ---------- Book Grid (4 columns, fixed 3:4 display ratio) ---------- */
+/* ---------- Book Grid (Masonry via CSS columns) ---------- */
 .book-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  column-count: 4;
   column-gap: 60px;
-  row-gap: 90px;
-  align-items: start;
 }
 
 .book {
-  min-width: 0;
+  /* 关键：防止一本书被拆到两列 */
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+
+  display: inline-block;   /* inline-block + width:100% 让 columns 布局正常识别块 */
+  width: 100%;
+  margin: 0 0 90px;        /* 用 margin-bottom 代替 grid 的 row-gap */
   animation: fadeUp .9s ease both;
-  display: flex;
-  flex-direction: column;
 }
 
-/* 封面：固定宽度撑满格子，高度按 3:4 比例；图片用 contain 完整显示不裁剪 */
-.book img,
-.empty-cover {
+/* 图片按原始比例显示，宽度撑满列 */
+.book img {
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: contain;            /* 想裁剪填满就改成 cover */
-  object-position: center bottom;  /* 封面底部对齐，视觉更稳 */
-  background: transparent;
+  height: auto;
   transition: transform .6s cubic-bezier(.2, .7, .2, 1), filter .6s ease;
   filter: saturate(.95);
 }
 
+/* 无封面占位：给一个 3:4 空框，避免图片高度参差过大 */
 .empty-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
   border: 1px dashed var(--line);
+  background: transparent;
 }
 
 .book:hover img {
@@ -294,11 +297,8 @@ footer {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
-  .book-grid {
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 48px;
-    row-gap: 80px;
-  }
+  .book-grid { column-count: 3; column-gap: 48px; }
+  .book { margin-bottom: 80px; }
 }
 
 @media (max-width: 900px) {
@@ -310,11 +310,8 @@ footer {
 }
 
 @media (max-width: 700px) {
-  .book-grid {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 32px;
-    row-gap: 60px;
-  }
+  .book-grid { column-count: 2; column-gap: 32px; }
+  .book { margin-bottom: 60px; }
 }
 
 @media (max-width: 600px) {
@@ -327,5 +324,6 @@ footer {
 }
 
 @media (max-width: 400px) {
-  .book-grid { grid-template-columns: 1fr; row-gap: 50px; }
+  .book-grid { column-count: 1; }
+  .book { margin-bottom: 50px; }
 }
