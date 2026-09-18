@@ -95,3 +95,76 @@ function renderForthcoming() {
 render("fiction", "fiction");
 render("nonfiction", "nonfiction");
 renderForthcoming();
+
+/* ---------- Masonry Layout ---------- */
+function getColumnConfig() {
+  const w = window.innerWidth;
+  if (w <= 400)  return { cols: 1, gapX: 0,  gapY: 50 };
+  if (w <= 700)  return { cols: 2, gapX: 32, gapY: 60 };
+  if (w <= 1100) return { cols: 3, gapX: 48, gapY: 80 };
+  return { cols: 4, gapX: 60, gapY: 90 };
+}
+
+function layoutMasonry(gridId) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  const books = Array.from(grid.children);
+  const { cols, gapX, gapY } = getColumnConfig();
+
+  const gridWidth = grid.clientWidth;
+  const colWidth = (gridWidth - gapX * (cols - 1)) / cols;
+  const colHeights = new Array(cols).fill(0);
+
+  // 先设宽度，让浏览器重新计算每本书的实际高度
+  books.forEach(book => {
+    book.style.width = colWidth + 'px';
+  });
+
+  // 强制回流一次，确保下面读到的 offsetHeight 是最新的
+  void grid.offsetHeight;
+
+  books.forEach(book => {
+    let minCol = 0;
+    for (let i = 1; i < cols; i++) {
+      if (colHeights[i] < colHeights[minCol]) minCol = i;
+    }
+    const x = minCol * (colWidth + gapX);
+    const y = colHeights[minCol];
+    book.style.left = x + 'px';
+    book.style.top = y + 'px';
+    colHeights[minCol] += book.offsetHeight + gapY;
+  });
+
+  grid.style.height = Math.max(...colHeights) + 'px';
+}
+
+function relayoutAll() {
+  layoutMasonry('fiction');
+  layoutMasonry('nonfiction');
+}
+
+function waitImagesThenLayout() {
+  const imgs = document.querySelectorAll('.book-grid img');
+  const total = imgs.length;
+  if (total === 0) { relayoutAll(); return; }
+
+  let loaded = 0;
+  const done = () => { if (++loaded === total) relayoutAll(); };
+
+  imgs.forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      done();
+    } else {
+      img.addEventListener('load', done);
+      img.addEventListener('error', done);
+    }
+  });
+}
+
+waitImagesThenLayout();
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(relayoutAll, 150);
+});
