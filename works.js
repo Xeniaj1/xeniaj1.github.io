@@ -40,30 +40,6 @@ cover:"carrington.jpg"
 
 {
 category:"fiction",
-title:"朱莉娅与火箭筒，及其他",
-original:"Julia and the Bazooka and Other Stories",
-author:"Anna Kavan",
-douban:"https://book.douban.com/subject/38547011/"
-},
-
-{
-category:"fiction",
-title:"冬天的故事",
-original:"Winter’s Tales",
-author:"Isak Dinesen",
-douban:"https://book.douban.com/subject/38640896/"
-},
-
-{
-category:"fiction",
-title:"命运逸事及埃林加德",
-original:"Anecdotes of Destiny and Ehrengard",
-author:"Isak Dinesen",
-douban:"https://book.douban.com/subject/38640069/"
-},
-
-{
-category:"fiction",
 title:"两全其美",
 original:"Both Ways Is the Only Way I Want It",
 author:"Maile Meloy",
@@ -87,6 +63,33 @@ original:"The Candy House",
 author:"Jennifer Egan",
 douban:"https://book.douban.com/subject/37527555/",
 cover:"candy-house.jpg"
+},
+
+
+/* no cover */
+
+{
+category:"fiction",
+title:"朱莉娅与火箭筒，及其他",
+original:"Julia and the Bazooka and Other Stories",
+author:"Anna Kavan",
+douban:"https://book.douban.com/subject/38547011/"
+},
+
+{
+category:"fiction",
+title:"冬天的故事",
+original:"Winter’s Tales",
+author:"Isak Dinesen",
+douban:"https://book.douban.com/subject/38640896/"
+},
+
+{
+category:"fiction",
+title:"命运逸事及埃林加德",
+original:"Anecdotes of Destiny and Ehrengard",
+author:"Isak Dinesen",
+douban:"https://book.douban.com/subject/38640069/"
 },
 
 
@@ -117,14 +120,6 @@ original:"Francis Bacon: Studies for a Portrait",
 author:"Michael Peppiatt",
 douban:"https://book.douban.com/subject/35941942/",
 cover:"bacon-portrait.jpg"
-},
-
-{
-category:"nonfiction",
-title:"其他重要的人",
-original:"The Other Significant Others: Reimagining Life with Friendship at the Center",
-author:"Rhaina Cohen",
-douban:"https://book.douban.com/subject/38598262/"
 },
 
 {
@@ -170,25 +165,60 @@ original:"My Friend Anna",
 author:"Rachel DeLoache Williams",
 douban:"https://book.douban.com/subject/37089377/",
 cover:"my-friend-anna.jpg"
-}
+},
 
+
+{
+category:"nonfiction",
+title:"其他重要的人",
+original:"The Other Significant Others: Reimagining Life with Friendship at the Center",
+author:"Rhaina Cohen",
+douban:"https://book.douban.com/subject/38598262/"
+}
 
 ];
 
 
-function render(category, element){
 
-const container=document.getElementById(element);
+const forthcoming=[
+
+["The Gathering","Anne Enright"],
+
+["The Witness for the Prosecution","Agatha Christie"],
+
+["Making Ends Meet","Kathryn Edin / Laura Lein"],
+
+["Three Guineas","Virginia Woolf"],
+
+["Nothing But the Night","John Williams"],
+
+["Creation Lake","Rachel Kushner"],
+
+["Francis Bacon: A Self-Portrait in Words","Michael Peppiatt"],
+
+["Burnt","Clare Frank"],
+
+["Selected Stories","Andre Dubus"],
+
+["Interviews with Francis Bacon","David Sylvester"]
+
+];
+
+
+
+function render(category,id){
+
+const container=document.getElementById(id);
 
 works
 .filter(book=>book.category===category)
 .forEach(book=>{
 
-const cover = book.cover 
+const cover=book.cover
 ? `<img src="${book.cover}" alt="${book.title}">`
-: `<div class="cover-placeholder"></div>`;
+: "";
 
-container.innerHTML += `
+container.innerHTML+=`
 
 <div class="book">
 
@@ -221,5 +251,29 @@ ${book.author}
 }
 
 
+function renderForthcoming(){
+
+const container=document.getElementById("forthcoming");
+
+forthcoming.forEach(book=>{
+
+container.innerHTML+=`
+
+<div class="future-book">
+
+<div>${book[0]}</div>
+
+<div>${book[1]}</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
 render("fiction","fiction");
 render("nonfiction","nonfiction");
+renderForthcoming();
